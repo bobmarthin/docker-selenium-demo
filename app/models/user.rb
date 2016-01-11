@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
   has_many :microposts
-  validates :name, length: { maximum: 40 }, presence: true
+  validates FILL_IN, presence: true
+  validates FILL_IN, presence: true
 end
