@@ -1,16 +1,3 @@
-db:
-  image: postgres:9.4.1
-  ports:
-    - "5432:5432"
-web:
-  build: .
-  command: bin/rails server --port 3000 --binding 0.0.0.0
-  ports:
-    - "3000:3000"
-  links:
-    - db
-  volumes:
-    - .:/myapp
 hub:
   image: selenium/hub
   ports:
@@ -23,3 +10,18 @@ chrome:
   image: selenium/node-chrome
   links:
     - hub
+db:
+  image: postgres:9.4.1
+  ports:
+    - "5432:5432"
+web:
+  build: .
+  command: bin/rails server --port 3000 --binding 0.0.0.0
+  ports:
+    - "3000:3000"
+  links:
+    - db
+    - hub
+  volumes:
+    - .:/myapp
+
